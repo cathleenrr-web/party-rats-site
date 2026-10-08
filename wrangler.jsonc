@@ -8,6 +8,8 @@
   },
   // Required by `wrangler preview`, which Workers Builds runs for non-main branches.
   "previews": {},
+  // Give every branch preview its own shareable workers.dev link.
+  "preview_urls": true,
   // Cloudflare creates the DNS records and certificates for these on deploy.
   // Any old A/CNAME records for these hostnames must be removed first.
   "routes": [
