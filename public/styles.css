@@ -94,3 +94,21 @@ section > *, .hero__body { max-width: 56rem; margin-left: auto; margin-right: au
   .pull__peace { right: 50%; transform: translateX(50%); }
 }
 @media (prefers-reduced-motion: reduce) { .cta { transition: none; } }
+
+/* Inquiry form */
+.inquiry { max-width: 44rem; margin: 0 auto; text-align: left; }
+.inquiry__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 0 1.25rem; }
+.inquiry label { display: block; margin-bottom: 1.1rem; font-size: .95rem; font-weight: 600; }
+.inquiry .opt { font-weight: 400; color: #a9a9a9; }
+.inquiry input, .inquiry select, .inquiry textarea {
+  display: block; width: 100%; margin-top: .4rem; padding: .75rem .85rem;
+  font: 400 1rem/1.4 var(--font-body); color: var(--black);
+  background: var(--warm-white); border: 2px solid transparent; border-radius: 4px;
+}
+.inquiry input:focus, .inquiry select:focus, .inquiry textarea:focus { outline: none; border-color: var(--cyan); }
+.inquiry textarea { resize: vertical; }
+.inquiry .cta { display: block; margin: 1.5rem auto 0; border: 0; cursor: pointer; }
+.inquiry .cta:disabled { opacity: .6; cursor: progress; }
+.inquiry__status { text-align: center; min-height: 1.6em; margin: 1rem 0 0; color: var(--lime); }
+.inquiry.is-sent .inquiry__grid, .inquiry.is-sent > label, .inquiry.is-sent .cta { display: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

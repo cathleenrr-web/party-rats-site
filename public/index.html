@@ -41,7 +41,7 @@
       <h1 class="accent hero__title">Ideas first.</h1>
       <p class="hero__sub">everything else follows</p>
       <p class="hero__lede">We create custom parties, celebrations, and experiences built around good ideas, and the people who can bring them to life.</p>
-      <a class="cta" href="https://forms.gle/2iD8DwDikYpsya6V6" target="_blank" rel="noopener">Wanna Party?</a>
+      <a class="cta" href="#inquire">Wanna Party?</a>
     </div>
     <img class="hero__rat" src="/img/rat-hero.webp" alt="" width="600" height="872" fetchpriority="low">
   </header>
@@ -79,10 +79,52 @@
       </div>
     </section>
 
-    <section class="idea">
+    <section class="idea" id="inquire">
       <h2 class="idea__title">Got an idea? <img src="/img/rat-sketch.webp" alt="" width="240" height="183" loading="lazy"></h2>
       <p>Tell us what you’re celebrating, what you’re imagining and what feels impossible. We’ll take it from there.</p>
-      <a class="cta" href="https://forms.gle/2iD8DwDikYpsya6V6" target="_blank" rel="noopener">Wanna Party?</a>
+
+      <form class="inquiry" action="/api/inquiry" method="post" novalidate>
+        <div class="inquiry__grid">
+          <label>Your name
+            <input name="name" autocomplete="name" required maxlength="100">
+          </label>
+          <label>Email
+            <input name="email" type="email" autocomplete="email" required maxlength="200">
+          </label>
+          <label>Phone <span class="opt">(optional)</span>
+            <input name="phone" type="tel" autocomplete="tel" maxlength="40">
+          </label>
+          <label>Event date <span class="opt">(rough is fine)</span>
+            <input name="date" maxlength="60" placeholder="e.g. late March">
+          </label>
+          <label>Guests
+            <select name="guests">
+              <option value="">Pick one</option>
+              <option>Under 25</option>
+              <option>25 to 75</option>
+              <option>75 to 150</option>
+              <option>150+</option>
+            </select>
+          </label>
+          <label>Budget
+            <select name="budget">
+              <option value="">Pick one</option>
+              <option>Under $5k</option>
+              <option>$5k to $15k</option>
+              <option>$15k to $50k</option>
+              <option>$50k+</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+        </div>
+        <label>What are you celebrating, and what’s the idea?
+          <textarea name="idea" rows="5" required maxlength="4000"></textarea>
+        </label>
+        <!-- Spam trap: people never see or fill this -->
+        <label class="hp" aria-hidden="true">Company <input name="company" tabindex="-1" autocomplete="off"></label>
+        <button class="cta" type="submit">Wanna Party?</button>
+        <p class="inquiry__status" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </main>
 
@@ -90,5 +132,6 @@
     <p>© <span id="y">2026</span> Party Rats</p>
   </footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/inquiry.js" defer></script>
 </body>
 </html>
