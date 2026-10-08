@@ -26,11 +26,26 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
+    "@id": "https://thepartyrats.com/#org",
     "name": "Party Rats",
-    "description": "Custom parties, celebrations, and experiences built around good ideas.",
     "url": "https://thepartyrats.com/",
-    "logo": "https://thepartyrats.com/img/logo.webp"
+    "logo": "https://thepartyrats.com/img/logo.webp",
+    "image": "https://thepartyrats.com/img/og.jpg",
+    "slogan": "Ideas first. Everything else follows.",
+    "description": "Party Rats creates custom parties, celebrations and experiences from the idea up, bringing together creative concepts, food and drink, design and décor, music and entertainment, and custom merch.",
+    "knowsAbout": ["Custom parties", "Event design", "Celebrations", "Experiential events"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "What we do",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Creative Concepts" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Food + Drink" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design + Décor" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Music + Entertainment" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Merch" } }
+      ]
+    }
   }
   </script>
 </head>
