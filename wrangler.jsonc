@@ -1,13 +1,22 @@
-// Party Rats site: a static site served by Cloudflare Workers (assets only, no script).
+// Party Rats site: static files in public/, plus a small Worker (src/worker.js)
+// that handles the inquiry form.
 {
   "name": "party-rats-site",
+  "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./public",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
   },
+  // Sends inquiry emails to the LEAD_TO secret (a verified Email Routing address).
+  "send_email": [{ "name": "EMAIL" }],
+  // Keep request logs so a failed inquiry email is still recoverable.
+  "observability": { "enabled": true },
   // Required by `wrangler preview`, which Workers Builds runs for non-main branches.
   "previews": {},
+  // Give every branch preview its own shareable workers.dev link.
+  "preview_urls": true,
   // Cloudflare creates the DNS records and certificates for these on deploy.
   // Any old A/CNAME records for these hostnames must be removed first.
   "routes": [
