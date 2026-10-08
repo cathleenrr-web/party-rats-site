@@ -21,5 +21,5 @@ and every other branch gets its own preview URL. To deploy by hand: `npx wrangle
 
 - Black dominates; hot pink `#FF2B8C`, cyan `#22D9FF` and acid chartreuse `#D8FF2B` are accents.
 - League Spartan for headlines, Inter for body, Edo for short accent phrases only
-  ("Ideas first.", "Got an idea?"). Edo isn't on Google Fonts, so Permanent Marker stands in until it's self-hosted.
+  ("Ideas first.", "Got an idea?"). Edo (freeware by Vic Fieger) is self-hosted in `public/fonts/`.
 - The "Wanna Party?" buttons go to the Google Form: https://forms.gle/2iD8DwDikYpsya6V6

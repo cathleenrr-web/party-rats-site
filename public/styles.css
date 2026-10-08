@@ -9,8 +9,14 @@
 
   --font-head: "League Spartan", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
-  /* Brand accent font is Edo; Permanent Marker stands in until Edo is self-hosted. */
-  --font-accent: "Permanent Marker", "Edo", cursive;
+  --font-accent: "Edo", "Permanent Marker", cursive;
+}
+
+/* Edo by Vic Fieger, freeware (see /fonts/edo-license.txt). Self-hosted. */
+@font-face {
+  font-family: "Edo";
+  src: url("/fonts/edo.woff2") format("woff2");
+  font-display: swap;
 }
 
 * { box-sizing: border-box; }
