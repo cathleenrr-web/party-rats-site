@@ -1,0 +1,90 @@
+/* Party Rats brand tokens, from the Canva "Master Design System".
+   Black dominates; neon colors are accents. */
+:root {
+  --black: #111111;
+  --warm-white: #f6f4ef;
+  --pink: #ff2b8c;
+  --cyan: #22d9ff;
+  --lime: #d8ff2b;
+
+  --font-head: "League Spartan", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  /* Brand accent font is Edo; Permanent Marker stands in until Edo is self-hosted. */
+  --font-accent: "Permanent Marker", "Edo", cursive;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--black);
+  font: 400 1.125rem/1.6 var(--font-body);
+}
+img { max-width: 100%; height: auto; display: block; }
+h1, h2 { font-family: var(--font-head); font-weight: 800; line-height: 1.1; margin: 0 0 .5em; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); text-transform: uppercase; }
+.accent { font-family: var(--font-accent); font-weight: 400; text-transform: uppercase; }
+section, .hero { padding: clamp(3rem, 8vw, 5.5rem) 1rem; text-align: center; position: relative; overflow: hidden; }
+section > *, .hero__body { max-width: 56rem; margin-left: auto; margin-right: auto; }
+.lead { font-size: clamp(1.125rem, 2.2vw, 1.5rem); }
+
+/* Button sits on a strip of yellow tape, as in the Canva design */
+.cta {
+  display: inline-block;
+  padding: 1.1rem 2.6rem;
+  background: url("/img/tape.webp") center / 100% 100% no-repeat;
+  color: var(--black);
+  font: 400 1.6rem/1 var(--font-accent);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .15s ease;
+}
+.cta:hover, .cta:focus-visible { transform: rotate(-2deg) scale(1.05); }
+.cta:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
+
+/* Hero */
+.hero { background: #000; color: var(--warm-white); min-height: 34rem; }
+.hero__logo { position: absolute; top: 0; left: 1rem; width: clamp(7rem, 18vw, 15rem); }
+.hero__body { position: relative; z-index: 1; }
+.hero__title { font-size: clamp(2.5rem, 7vw, 3.5rem); margin-bottom: .2em; }
+.hero__sub {
+  font: 800 clamp(1.5rem, 3.5vw, 2.25rem)/1.2 var(--font-head);
+  margin: 0 auto 1.5rem;
+  display: inline-block;
+  background: linear-gradient(transparent 55%, color-mix(in srgb, var(--cyan) 55%, transparent) 55% 85%, transparent 85%);
+}
+.hero__lede { max-width: 34rem; margin: 0 auto 2rem; }
+.hero__rat { position: absolute; right: 4%; bottom: -6rem; width: clamp(9rem, 18vw, 16rem); }
+
+/* What we do */
+.what { background: var(--warm-white); }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1rem; }
+.services { list-style: none; padding: 0; margin: 2rem auto; font-size: clamp(1.125rem, 2.2vw, 1.5rem); }
+.what__tag { color: var(--pink); font-size: clamp(1.1rem, 2.2vw, 1.5rem); margin-top: 2.5rem; }
+
+/* Pink pull quote */
+.pull { background: var(--pink); }
+.pull__quote { font-size: clamp(1.75rem, 4.5vw, 3rem); margin: 2rem auto 1.5rem; }
+.pull__peace { position: absolute; right: 24%; bottom: -1.5rem; width: clamp(4rem, 8vw, 6.5rem); }
+
+/* Who */
+.who { background: var(--warm-white); }
+.who__body { max-width: 48rem; text-align: left; }
+
+/* Got an idea */
+.idea { background: #000; color: var(--warm-white); }
+.idea__title { display: inline-flex; align-items: center; gap: .75rem; text-transform: none; }
+.idea__title img { width: 4.5rem; }
+.idea p { margin: 0 auto 2rem; max-width: 46rem; }
+
+.footer { background: #000; color: #8a8a8a; text-align: center; padding: 1.5rem 1rem 2rem; font-size: .875rem; }
+.footer p { margin: 0; }
+
+@media (max-width: 720px) {
+  .hero { padding-top: 9rem; padding-bottom: 12rem; }
+  .hero__rat { right: 50%; transform: translateX(50%); bottom: -4rem; }
+  .pull { padding-bottom: 7rem; }
+  .pull__peace { right: 50%; transform: translateX(50%); }
+}
+@media (prefers-reduced-motion: reduce) { .cta { transition: none; } }

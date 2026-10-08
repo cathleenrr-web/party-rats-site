@@ -1,0 +1,11 @@
+// Party Rats site: a static site served by Cloudflare Workers (assets only, no script).
+{
+  "name": "party-rats-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+  // Custom domain goes here once the domain moves off Canva, e.g.:
+  // "routes": [{ "pattern": "partyrats.example", "custom_domain": true }]
+}
