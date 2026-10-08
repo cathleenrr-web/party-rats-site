@@ -20,18 +20,22 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
 body {
   margin: 0;
   background: var(--black);
   color: var(--black);
   font: 400 1.125rem/1.6 var(--font-body);
+  overflow-x: clip;
 }
 img { max-width: 100%; height: auto; display: block; }
 h1, h2 { font-family: var(--font-head); font-weight: 800; line-height: 1.1; margin: 0 0 .5em; }
 h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); text-transform: uppercase; }
+/* Even line lengths on narrow screens: no one-word last lines like "FOR." */
+h1, h2, .accent, .hero__sub { text-wrap: balance; }
+p, li { text-wrap: pretty; }
 .accent { font-family: var(--font-accent); font-weight: 400; text-transform: uppercase; }
-section, .hero { padding: clamp(3rem, 8vw, 5.5rem) 1rem; text-align: center; position: relative; overflow: hidden; }
+section, .hero { padding: clamp(3rem, 8vw, 5.5rem) max(1.25rem, env(safe-area-inset-right)) clamp(3rem, 8vw, 5.5rem) max(1.25rem, env(safe-area-inset-left)); text-align: center; position: relative; overflow: hidden; }
 section > *, .hero__body { max-width: 56rem; margin-left: auto; margin-right: auto; }
 .lead { font-size: clamp(1.125rem, 2.2vw, 1.5rem); }
 
@@ -46,7 +50,8 @@ section > *, .hero__body { max-width: 56rem; margin-left: auto; margin-right: au
   text-decoration: none;
   transition: transform .15s ease;
 }
-.cta:hover, .cta:focus-visible { transform: rotate(-2deg) scale(1.05); }
+@media (hover: hover) { .cta:hover { transform: rotate(-2deg) scale(1.05); } }
+.cta:focus-visible, .cta:active { transform: rotate(-2deg) scale(1.05); }
 .cta:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
 
 /* Hero */
@@ -84,16 +89,44 @@ section > *, .hero__body { max-width: 56rem; margin-left: auto; margin-right: au
 .idea__title img { width: 4.5rem; }
 .idea p { margin: 0 auto 2rem; max-width: 46rem; }
 
-.footer { background: #000; color: #8a8a8a; text-align: center; padding: 1.5rem 1rem 2rem; font-size: .875rem; }
+.footer { background: #000; color: #8a8a8a; text-align: center; padding: 1.5rem 1rem max(2rem, env(safe-area-inset-bottom)); font-size: .875rem; }
 .footer p { margin: 0; }
 
+/* Sticky inquiry button, phones only. Hidden until both on-page buttons are off screen. */
+.sticky-cta { display: none; }
+
 @media (max-width: 720px) {
-  .hero { padding-top: 9rem; padding-bottom: 12rem; }
-  .hero__rat { right: 50%; transform: translateX(50%); bottom: -4rem; }
+  body { font-size: 1.0625rem; }
+  .hero { min-height: 0; padding-top: 7.5rem; padding-bottom: 13rem; }
+  .hero__logo { left: max(1rem, env(safe-area-inset-left)); }
+  .hero__lede { margin-bottom: 1.75rem; }
+  .hero__rat { right: 50%; transform: translateX(50%); bottom: -3rem; width: 11rem; }
+  .services { margin: 1.5rem auto; line-height: 1.9; }
+  .what__tag { margin-top: 1.75rem; }
   .pull { padding-bottom: 7rem; }
   .pull__peace { right: 50%; transform: translateX(50%); }
+  .idea__title img { width: 3.5rem; }
+
+  .sticky-cta {
+    display: block;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    padding: .6rem 1rem max(.6rem, env(safe-area-inset-bottom));
+    background: var(--black);
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, .35);
+    text-align: center;
+    transform: translateY(110%);
+    visibility: hidden;
+    transition: transform .25s ease, visibility 0s linear .25s;
+  }
+  .sticky-cta.is-shown { transform: none; visibility: visible; transition: transform .25s ease; }
+  .sticky-cta .cta { font-size: 1.35rem; padding: .85rem 2.2rem; }
+  /* Room so the bar never covers the footer */
+  .footer { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
 }
-@media (prefers-reduced-motion: reduce) { .cta { transition: none; } }
+@media (max-width: 360px) {
+  .cta { font-size: 1.4rem; padding: 1rem 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { .cta, .sticky-cta, .sticky-cta.is-shown { transition: none; } }
 
 /* Inquiry form */
 .inquiry { max-width: 44rem; margin: 0 auto; text-align: left; }
@@ -112,3 +145,4 @@ section > *, .hero__body { max-width: 56rem; margin-left: auto; margin-right: au
 .inquiry__status { text-align: center; min-height: 1.6em; margin: 1rem 0 0; color: var(--lime); }
 .inquiry.is-sent .inquiry__grid, .inquiry.is-sent > label, .inquiry.is-sent .cta { display: none; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }

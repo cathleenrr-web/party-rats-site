@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Party Rats | Custom Parties, Celebrations and Experiences</title>
   <meta name="description" content="Party Rats creates original celebrations from the idea up: creative concepts, food and drink, design and décor, music and entertainment, and custom merch.">
   <meta name="theme-color" content="#111111">
@@ -128,10 +128,32 @@
     </section>
   </main>
 
+  <!-- Mobile only: keeps a jump to the inquiry form in reach once the hero button scrolls away -->
+  <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+    <a class="cta" href="#inquire" tabindex="-1">Wanna Party?</a>
+  </div>
+
   <footer class="footer">
     <p>© <span id="y">2026</span> Party Rats</p>
   </footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Show the sticky button only while neither the hero button nor the inquiry form is visible.
+    (function () {
+      var bar = document.getElementById('sticky-cta');
+      var link = bar.querySelector('a');
+      var visible = new Set();
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.isIntersecting ? visible.add(e.target) : visible.delete(e.target); });
+        var show = visible.size === 0;
+        bar.classList.toggle('is-shown', show);
+        bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+        link.tabIndex = show ? 0 : -1;
+      });
+      document.querySelectorAll('.hero .cta, #inquire').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
   <script src="/inquiry.js" defer></script>
 </body>
 </html>
