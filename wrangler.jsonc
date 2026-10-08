@@ -7,7 +7,11 @@
     "not_found_handling": "404-page"
   },
   // Required by `wrangler preview`, which Workers Builds runs for non-main branches.
-  "previews": {}
-  // Custom domain goes here once the domain moves off Canva, e.g.:
-  // "routes": [{ "pattern": "partyrats.example", "custom_domain": true }]
+  "previews": {},
+  // Cloudflare creates the DNS records and certificates for these on deploy.
+  // Any old A/CNAME records for these hostnames must be removed first.
+  "routes": [
+    { "pattern": "thepartyrats.com", "custom_domain": true },
+    { "pattern": "www.thepartyrats.com", "custom_domain": true }
+  ]
 }
